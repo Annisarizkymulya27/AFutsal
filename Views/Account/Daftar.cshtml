@@ -1,0 +1,66 @@
+﻿@model User;
+
+@{
+    Layout = "_LayoutAccount";
+}
+
+
+
+@*<div id="register" class="animate form registration_form">*@
+    <section class="login_content">
+        <form asp-action="Daftar">
+            <h1>Create Account</h1>
+            <div>
+                <input type="text" asp-for="Username" placeholder="Username" required="" />
+            </div>
+            <div>
+                <input type="password" asp-for="Password" placeholder="Password" required="" />
+            </div>
+            <div>
+                <input type="email" asp-for="Email" placeholder="Email" required="" />
+            </div>
+            <div>
+                <input type="text" asp-for="Name" placeholder="Name" required="" />
+            </div>
+            <div>
+                <input type="text" asp-for="Roles" style="" />
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Jenis Akun</label>
+                </div>
+                <div class="col-lg-6">
+                    <select id="selectRoles" onchange="setRole()">
+                        <option value="1">Admin</option>
+                        <option value="2">User</option>
+                    </select>
+
+                </div>
+
+            </div>
+            <div>
+                <input class="btn btn-default submit" type="submit" value="submit" />
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="separator">
+                <p class="change_link">
+                    Already Have an Account ?
+                    <a asp-action="Masuk" class="to_register"> Log in </a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+            </div>
+        </form>
+    </section>
+
+<script>
+    function setRole() {
+        debugger
+        var UserOption = document.getElementById('selectRoles').value;
+        document.getElementById('Roles').value = UserOption
+        console.log(document.getElementById('Roles').value)
+    }
+</script>

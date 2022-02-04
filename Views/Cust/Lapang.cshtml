@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Lapangan>
+@{
+    ViewData["NamaLapang"] = "Index";
+}
+
+@{
+    Layout = "_LayoutUser";
+}
+
+<p>
+    <a asp-action="Create">Data Lapangan</a>
+</p>
+<table class="table">
+    <thead>
+    <th>
+        @Html.DisplayNameFor(model => model.IdLapang)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.NamaLapang)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Fasilitas)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Tarif)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Status)
+    </th>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdLapang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NamaLapang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fasilitas)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tarif)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <a class="btn btn-primary btn-xl text-uppercase" asp-action="">Reservasi</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

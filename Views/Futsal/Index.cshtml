@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Lapangan>
+@{
+    ViewData["NamaLapang"] = "Index";
+}
+
+<p>
+    <a asp-action="Create">Data Lapangan</a>
+</p>
+<table class="table">
+    <thead>
+    <th>
+        @Html.DisplayNameFor(model => model.IdLapang)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.NamaLapang)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Fasilitas)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Tarif)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Status)
+    </th>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdLapang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NamaLapang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fasilitas)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tarif)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdLapang">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.IdLapang">Delete</a>
+                    <a asp-action="Detail" asp-route-id="@item.IdLapang">Detail</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
