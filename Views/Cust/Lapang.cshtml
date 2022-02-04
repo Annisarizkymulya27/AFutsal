@@ -1,11 +1,10 @@
 ﻿@model IEnumerable<Lapangan>
 @{
     ViewData["NamaLapang"] = "Index";
-}
-
-@{
     Layout = "_LayoutUser";
 }
+
+
 
 <p>
     <a asp-action="Create">Data Lapangan</a>
@@ -47,9 +46,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    <a class="btn btn-primary btn-xl text-uppercase" asp-action="">Reservasi</a>
                 </td>
             </tr>
         }

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Reservasi>
+
+@{
+    ViewData["Nama"] = "Reservation";
+    Layout = "_LayoutAdmin";
+}
+
+
+<p>
+    <a asp-action="Reservation">Data Reservasi</a>
+</p>
+<table class="table">
+    <thead>
+    <th>
+        @Html.DisplayNameFor(model => model.IdBooking)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Nama)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.NoHP)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Email)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Tanggal)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Jam)
+    </th>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdBooking)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nama)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoHP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tanggal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Jam)
+            </td>
+            <td>
+                <a asp-action="Detail" asp-route-id="@item.IdBooking">Detail</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

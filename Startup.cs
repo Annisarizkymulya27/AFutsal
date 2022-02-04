@@ -29,6 +29,11 @@ namespace AFutsal
             {
                 o.UseMySQL(Configuration.GetConnectionString("mysql"));
             });
+            services.AddAuthentication("CookieAuth")
+                .AddCookie("CookieAuth", options =>
+                {
+                    options.LoginPath = "/Account/Masuk";
+                });
             services.AddControllersWithViews();
         }
 
@@ -50,13 +55,15 @@ namespace AFutsal
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Account}/{action=Masuk}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

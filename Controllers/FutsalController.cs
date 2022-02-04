@@ -1,5 +1,6 @@
 ﻿using AFutsal.Data;
 using AFutsal.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace AFutsal.Controllers
 {
+    [Authorize]
     public class FutsalController : Controller
     {
         
@@ -19,6 +21,11 @@ namespace AFutsal.Controllers
         public IActionResult Index()
         {
             var data = _context.Tb_Lapang.ToList();
+            return View(data);
+        }
+        public IActionResult Reservation()
+        {
+            var data = _context.Tb_Reservasi.ToList();
             return View(data);
         }
         public IActionResult Create()

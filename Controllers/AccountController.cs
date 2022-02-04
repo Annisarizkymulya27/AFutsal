@@ -52,13 +52,7 @@ namespace AFutsal.Controllers
         [HttpPost]
         public async Task<IActionResult> Masuk(User datanya)
         {
-            //var cari = _context.Tb_User.Where(  // proses pencarian
-            //                                bebas =>
-            //                                bebas.Username == datanya.Username
-            //                                &&
-            //                                bebas.Password == datanya.Password
-            //).FirstOrDefault(); // hanya dapat 1 data
-
+           
             var cariusername = _context.Tb_User.Where(bebas => bebas.Username == datanya.Username).FirstOrDefault();
 
             if (cariusername != null)
@@ -92,8 +86,12 @@ namespace AFutsal.Controllers
                     {
                         return RedirectToAction(controllerName: "Futsal", actionName: "Index");
                     }
+                    else if(cariusername.Roles.Id == "2")
+                    {
+                        return RedirectToAction(controllerName: "Cust", actionName: "Index");
+                    }
 
-                    return RedirectToAction(controllerName: "Home", actionName: "Privacy");
+                    return RedirectToAction(controllerName: "Home", actionName: "Index");
                 }
 
                 ViewBag.pesan = "passwordnya salah";

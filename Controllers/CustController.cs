@@ -1,5 +1,6 @@
 ﻿using AFutsal.Data;
 using AFutsal.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace AFutsal.Controllers
 {
+    [Authorize]
     public class CustController : Controller
     {
         private readonly ILogger<CustController> _logger;
@@ -20,10 +22,6 @@ namespace AFutsal.Controllers
         {
             _logger = logger;
             _context = context;
-        }
-        public IActionResult Index()
-        {
-            return View();
         }
         public IActionResult Lapang()
         {
@@ -38,7 +36,6 @@ namespace AFutsal.Controllers
         [HttpPost]
         public async Task<IActionResult> Booking(Reservasi x)
         {
-            ViewBag.JamSelectList = new SelectList(GetJam(), "Jam");
             x.IdBooking = RandomString(5);
             _context.Tb_Reservasi.Add(x);
             await _context.SaveChangesAsync();
@@ -54,24 +51,7 @@ namespace AFutsal.Controllers
                                         .Select(s => s[random.Next(s.Length)])
                                         .ToArray());
         }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-        private List<Reservasi> GetJam()
-        {
-            var jam = new List<Reservasi>();
-            jam.Add(new Reservasi() { Jam = "08.00 - 10.00" });
-            jam.Add(new Reservasi() { Jam = "10.00 - 12.00" });
-            jam.Add(new Reservasi() { Jam = "12.00 - 14.00" });
-            jam.Add(new Reservasi() { Jam = "14.00 - 16.00" });
-            jam.Add(new Reservasi() { Jam = "16.00 - 18.00" });
-            jam.Add(new Reservasi() { Jam = "18.00 - 20.00" });
-
-            return jam;
-        }
+      
     }
 }
 
